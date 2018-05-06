@@ -1,8 +1,12 @@
+#!/usr/bin/env python
 import json
 import os
 import shutil
 import re
 import markdown2
+
+working_directory = os.getcwd()
+os.chdir(working_directory)
 
 config = json.load(open('builder.json', 'r'))
 destination_folder = config['config']['build_folder']
