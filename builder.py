@@ -101,7 +101,6 @@ class Build:
             self.build_folder()
         else:
             self.build_file()
-            #TODO SAVE THE FILE GENERATED
 
     def build_folder(self):
         paths = os.listdir(self.path)
@@ -168,12 +167,7 @@ class FileBuilder:
         for content in contents:
             match = re.search("<!-- pwb:section\('"+content+"'\) -->\s*(.*?)\s*<!-- pwb:end-section -->", file_content, re.S)
             if match:
-                replace = match.group(1)
-            else:
-                replace = ''
-
-            template_content = re.sub("<!-- pwb:content\('" + content + "'\) -->", replace, template_content)
-
+                template_content = re.sub("<!-- pwb:content\('" + content + "'\) -->", match.group(1), template_content)
 
         return template_content
 
